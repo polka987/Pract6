@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" name="RoutingTest">
+    <Properties>
+        <Property name="baseDir">D:/logs</Property>
+    </Properties>
+    <Appenders>
+        <Routing name="Routing">
+            <Routes pattern="$${ctx:logFileName}">
+                <Route>
+                    <File name="File-${logFileName}" fileName="${baseDir}/${logFileName}.log" append="true">
+                        <PatternLayout pattern="%.-1p [%-30c{1}] [%d{HH:mm:ss,SSS}]: %m %X%n"/>
+                    </File>
+                </Route>
+            </Routes>
+        </Routing>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Routing"/>
+        </Root>
+    </Loggers>
+</Configuration>
